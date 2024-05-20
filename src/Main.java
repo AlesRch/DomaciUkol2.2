@@ -8,6 +8,9 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+        System.out.println();
+        System.out.println("Welcome to reservation system");
+
         Guest guest1 = new Guest("Adéla", "Malíková", LocalDate.of(1993, 3, 13));
         Guest guest2 = new Guest("Jan", "Dvořáček", LocalDate.of(1995, 5, 5));
         Guest guest3 = new Guest("Marek", "Novák", LocalDate.of(1993, 4, 3));
