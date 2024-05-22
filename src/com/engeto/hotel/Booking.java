@@ -4,12 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Booking {
-        private Guest guests;
-        private List<Guest> otherGuest;
-        private Room room;
-        private LocalDate starDate;
-        private LocalDate endDate;
-        private VacationType typeOfVacation;
+    private Guest guests;
+    private List<Guest> otherGuest;
+    private Room room;
+    private LocalDate starDate;
+    private LocalDate endDate;
+    private VacationType typeOfVacation;
 
 
     public Booking(Guest guests, List<Guest> otherGuest, Room room, LocalDate starDate, LocalDate endDate, VacationType typeOfVacation) {
@@ -68,6 +68,7 @@ public class Booking {
     public void setTypeOfVacation(VacationType typeOfVacation) {
         this.typeOfVacation = typeOfVacation;
     }
+
 
     @Override
     public String toString() {
