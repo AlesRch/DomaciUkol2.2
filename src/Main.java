@@ -11,6 +11,7 @@ public class Main {
         System.out.println();
         System.out.println("Welcome to reservation system");
 
+
         Guest guest1 = new Guest("Adéla", "Malíková", LocalDate.of(1993, 3, 13));
         Guest guest2 = new Guest("Jan", "Dvořáček", LocalDate.of(1995, 5, 5));
         Guest guest3 = new Guest("Marek", "Novák", LocalDate.of(1993, 4, 3));
@@ -32,8 +33,8 @@ public class Main {
         System.out.println("Number of guests: " + guests.size());
         for (Guest guest : guests) {
             System.out.println(guest.getDescription());
-        }
 
+        }
 
         Room room1 = new Room(101, 1, true, true, 1000);
         Room room2 = new Room(102, 1, true, true, 1000);
@@ -65,6 +66,7 @@ public class Main {
         System.out.println("Number of rooms: " + rooms.size());
         for (Room room : rooms) {
             System.out.println(room.getDescription());
+
         }
 
         Booking booking1 = new Booking(guest1, Arrays.asList(guest2), room1, LocalDate.of(2021, 7, 16), LocalDate.of(2021, 7, 26), VacationType.RECREATION);
@@ -76,7 +78,11 @@ public class Main {
         bookingManager.addBooking(booking1);
         bookingManager.addBooking(booking2);
 
+        fillBookings(bookingManager, guest7, room2);
+
         bookingManager.printAllBookings();
+
+
 
         System.out.println();
         System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
@@ -84,7 +90,13 @@ public class Main {
         System.out.println();
         int index = 1;
         Booking booking = bookingManager.getbooking(index);
-        System.out.println("Reservation: " + booking);
+        System.out.println("Reservation by index: " + booking);
+
+        System.out.println();
+        bookingManager.clearBookings();
+        System.out.println("Reservations have been deleted.");
+
+        bookingManager.printAllBookings(); // Test, zda se skutečně nevypíší rezervace
 
     }
 
@@ -96,5 +108,7 @@ public class Main {
             bookingManager.addBooking(booking);
             startDate = startDate.plusDays(2);
         }
+
+
     }
 }

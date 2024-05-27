@@ -10,8 +10,8 @@ public class BookingManager {
         bookings = new ArrayList<>();
     }
 
-    public void addBooking(Booking newbooking) {
-        bookings.add(newbooking);
+    public void addBooking(Booking newBooking) {
+        bookings.add(newBooking);
     }
 
     public int getNumberOfWorkingBookings() {
@@ -26,6 +26,10 @@ public class BookingManager {
 
     public Booking getbooking(int index) {
         return bookings.get(index);
+    }
+
+    public void clearBookings() {
+        bookings.clear();
     }
 
     public void printAllBookings() {

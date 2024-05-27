@@ -20,6 +20,7 @@ public class Room {
                 + " Seaview: " + seaView + " Price per day: " + pricePerNight + (" Kč");
     }
 
+
     public int getNumber() {
         return number;
     }

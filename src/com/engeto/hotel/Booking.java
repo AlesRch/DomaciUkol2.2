@@ -11,7 +11,6 @@ public class Booking {
     private LocalDate endDate;
     private VacationType typeOfVacation;
 
-
     public Booking(Guest guests, List<Guest> otherGuest, Room room, LocalDate starDate, LocalDate endDate, VacationType typeOfVacation) {
         this.guests = guests;
         this.otherGuest = otherGuest;
@@ -69,7 +68,6 @@ public class Booking {
         this.typeOfVacation = typeOfVacation;
     }
 
-
     @Override
     public String toString() {
         return "Booking{" +
@@ -82,6 +80,4 @@ public class Booking {
                 '}';
     }
 }
-
-
 
