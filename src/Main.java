@@ -83,7 +83,6 @@ public class Main {
         bookingManager.printAllBookings();
 
 
-
         System.out.println();
         System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
 
@@ -95,6 +94,9 @@ public class Main {
         System.out.println();
         bookingManager.clearBookings();
         System.out.println("Reservations have been deleted.");
+
+        System.out.println();
+        System.out.println("Average number of guests per reservation: "+ bookingManager.getAvarageGuests());
 
         bookingManager.printAllBookings(); // Test, zda se skutečně nevypíší rezervace
 
@@ -108,7 +110,5 @@ public class Main {
             bookingManager.addBooking(booking);
             startDate = startDate.plusDays(2);
         }
-
-
     }
 }

@@ -14,6 +14,17 @@ public class BookingManager {
         bookings.add(newBooking);
     }
 
+    public int getAvarageGuests() {
+        if (bookings.isEmpty()) {
+            return 0;
+        }
+        int totalGuests = 0;
+        for (Booking booking : bookings) {
+            totalGuests += booking.getNumberOfGuests();
+        }
+        return (int) totalGuests / bookings.size();
+    }
+
     public int getNumberOfWorkingBookings() {
         int count = 0;
         for (Booking booking : bookings) {

@@ -68,6 +68,10 @@ public class Booking {
         this.typeOfVacation = typeOfVacation;
     }
 
+    public int getNumberOfGuests() {
+        return guests.size();
+    }
+
     @Override
     public String toString() {
         return "Booking{" +
