@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.engeto.hotel.Booking.getBookingLength;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -19,6 +21,7 @@ public class Main {
         Guest guest5 = new Guest("Karel", "Dvořák", LocalDate.of(1990, 5, 15));
         Guest guest6 = new Guest("Karel", "Dvořák", LocalDate.of(1979, 1, 3));
         Guest guest7 = new Guest("Karolína", "Tmavá", LocalDate.of(1990, 5, 20));
+
 
         List<Guest> guests = new ArrayList<>();
         guests.add(guest1);
@@ -80,8 +83,22 @@ public class Main {
 
         fillBookings(bookingManager, guest7, room2);
 
+        System.out.println();
+        bookingManager.getAvarageGuests();
+        System.out.println();
+
         bookingManager.printAllBookings();
 
+        System.out.println();
+        System.out.println("Average number of guests per reservation: "+ bookingManager.getAvarageGuests());
+
+        System.out.println();
+        Booking.getBookingLength();
+        System.out.println("number of nights in the reservation: " + getBookingLength());
+
+        System.out.println();
+        Booking.getPrice();
+        System.out.println("Reservation price: " + Booking.getPrice());
 
         System.out.println();
         System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
@@ -95,12 +112,9 @@ public class Main {
         bookingManager.clearBookings();
         System.out.println("Reservations have been deleted.");
 
-        System.out.println();
-        System.out.println("Average number of guests per reservation: "+ bookingManager.getAvarageGuests());
-
         bookingManager.printAllBookings(); // Test, zda se skutečně nevypíší rezervace
 
-    }
+           }
 
     public static void fillBookings(BookingManager bookingManager, Guest guest7, Room room) {
         LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 8, 1);

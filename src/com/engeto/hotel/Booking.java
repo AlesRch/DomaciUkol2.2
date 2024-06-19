@@ -1,14 +1,15 @@
 package com.engeto.hotel;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public class Booking {
     private Guest guests;
     private List<Guest> otherGuest;
-    private Room room;
-    private LocalDate starDate;
-    private LocalDate endDate;
+    private static Room room;
+    private static LocalDate starDate;
+    private static LocalDate endDate;
     private VacationType typeOfVacation;
 
     public Booking(Guest guests, List<Guest> otherGuest, Room room, LocalDate starDate, LocalDate endDate, VacationType typeOfVacation) {
@@ -69,7 +70,15 @@ public class Booking {
     }
 
     public int getNumberOfGuests() {
-        return guests.size();
+        return otherGuest.size() +1;
+        }
+
+    public static int getBookingLength() {
+        return (int) ChronoUnit.DAYS.between(starDate, endDate);
+    }
+
+    public static double getPrice() {
+        return getBookingLength() * room.getPricePerNight();
     }
 
     @Override
