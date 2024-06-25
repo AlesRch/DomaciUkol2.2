@@ -14,7 +14,7 @@ public class BookingManager {
         bookings.add(newBooking);
     }
 
-    public int getAvarageGuests() {
+    public double getAvarageGuests() {
         if (bookings.isEmpty()) {
             return 0;
         }
@@ -22,7 +22,7 @@ public class BookingManager {
         for (Booking booking : bookings) {
             totalGuests += booking.getNumberOfGuests();
         }
-        return (int) totalGuests / bookings.size();
+        return (double) totalGuests / bookings.size();
     }
 
     public int getNumberOfWorkingBookings() {

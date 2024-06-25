@@ -93,20 +93,18 @@ public class Main {
         System.out.println("Average number of guests per reservation: "+ bookingManager.getAvarageGuests());
 
         System.out.println();
-        Booking.getBookingLength();
-        System.out.println("number of nights in the reservation: " + getBookingLength());
-
-        System.out.println();
-        Booking.getPrice();
-        System.out.println("Reservation price: " + Booking.getPrice());
-
-        System.out.println();
-        System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
+        System.out.println("number of nights in the reservation: " + Booking.getBookingLength());
 
         System.out.println();
         int index = 1;
         Booking booking = bookingManager.getbooking(index);
         System.out.println("Reservation by index: " + booking);
+
+        System.out.println();
+        System.out.println("Reservation price: " + Booking.getPrice() + " Kč");
+
+        System.out.println();
+        System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
 
         System.out.println();
         bookingManager.clearBookings();

@@ -73,8 +73,9 @@ public class Booking {
         return otherGuest.size() +1;
         }
 
-    public static int getBookingLength() {
-        return (int) ChronoUnit.DAYS.between(starDate, endDate);
+    public static long getBookingLength() {
+        long daysBetween = ChronoUnit.DAYS.between(starDate, endDate);
+        return daysBetween;
     }
 
     public static double getPrice() {
