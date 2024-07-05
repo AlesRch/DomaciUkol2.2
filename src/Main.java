@@ -3,9 +3,8 @@ import com.engeto.hotel.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Formattable;
 import java.util.List;
-
-import static com.engeto.hotel.Booking.getBookingLength;
 
 public class Main {
     public static void main(String[] args) {
@@ -73,24 +72,38 @@ public class Main {
         }
 
         Booking booking1 = new Booking(guest1, Arrays.asList(guest2), room1, LocalDate.of(2021, 7, 16), LocalDate.of(2021, 7, 26), VacationType.RECREATION);
-        Booking booking2 = new Booking(guest2, Arrays.asList(), room3, LocalDate.of(2021, 7, 15), LocalDate.of(2021, 7, 29), VacationType.WORK);
+        Booking booking2 = new Booking(guest2, Arrays.asList(), room9, LocalDate.of(2021, 7, 15), LocalDate.of(2021, 7, 29), VacationType.WORK);
 
-
-        System.out.println();
         BookingManager bookingManager = new BookingManager();
         bookingManager.addBooking(booking1);
         bookingManager.addBooking(booking2);
+        fillBookings(guest5, guest6, guest7, room2, room3, bookingManager);
 
-        fillBookings(bookingManager, guest7, room2);
+        //System.out.println("First eight recreation bookings: " + bookingManager.getFirstEightRecreationalBookings());
+        System.out.println();
+        System.out.println("First eight recreacional bookings: ");
+        List<Booking> firstBookings = bookingManager.getFirstEightRecreationalBookings();
+        for (Booking booking : firstBookings) {
+            System.out.println(booking);
+        }
+        System.out.println();
+        System.out.println("Statistics: ");
+        printGuestStatistics(bookingManager);
 
         System.out.println();
         bookingManager.getAvarageGuests();
         System.out.println();
 
+        System.out.println();
+        System.out.println("Print all bookings:");
         bookingManager.printAllBookings();
 
         System.out.println();
-        System.out.println("Average number of guests per reservation: "+ bookingManager.getAvarageGuests());
+        System.out.println("Print all bookings in formatted: ");
+        printAllBookingsFormatted(bookingManager);
+
+        System.out.println();
+        System.out.println("Average number of guests per reservation: " + bookingManager.getAvarageGuests());
 
         System.out.println();
         int index = 1;
@@ -98,12 +111,12 @@ public class Main {
         System.out.println("Reservation by index: " + booking);
 
         System.out.println();
-        System.out.println("number of nights in the reservation: " + Booking.getBookingLength());
+        System.out.println("number of nights in the reservation: " + booking.getBookingLength());
 
-        System.out.println("Number of Guests in the reservation" + booking.getNumberOfGuests());
+        System.out.println("Number of Guests in the reservation: " + booking.getNumberOfGuests());
 
         System.out.println();
-        System.out.println("Reservation price: " + Booking.getPrice() + " Kč");
+        System.out.println("Reservation price: " + booking.getPrice() + " Kč");
 
         System.out.println();
         System.out.println("Number of working bookings: " + bookingManager.getNumberOfWorkingBookings());
@@ -114,15 +127,68 @@ public class Main {
 
         bookingManager.printAllBookings(); // Test, zda se skutečně nevypíší rezervace
 
-           }
+    }
 
-    public static void fillBookings(BookingManager bookingManager, Guest guest7, Room room) {
+    public static void printGuestStatistics(BookingManager bookingManager) {
+        int oneGuestCount = 0;
+        int twoGuestCount = 0;
+        int moreThanTwoGuestCount = 0;
+
+        for (Booking booking : bookingManager.getBookings()) {
+            int numberOfGuests = booking.getNumberOfGuests();
+            if (numberOfGuests == 1) {
+                oneGuestCount++;
+            } else if (numberOfGuests == 2) {
+                twoGuestCount++;
+            } else if (numberOfGuests > 2) {
+                moreThanTwoGuestCount++;
+            }
+
+        }
+        System.out.println("Total number of bookings with one guest: " + oneGuestCount);
+        System.out.println("Total number of bookings with two guests: " + twoGuestCount);
+        System.out.println("Total number of bookings with more than two guests: " + moreThanTwoGuestCount);
+    }
+
+
+    public static void fillBookings(Guest guest5, Guest guest6, Guest guest7, Room room2, Room room3, BookingManager bookingManager) {
+            Booking booking3 = new Booking(guest5, Arrays.asList(), room3, LocalDate.of(2023, 6, 1), LocalDate.of(2023, 6, 7), VacationType.WORK);
+            bookingManager.addBooking(booking3);
+            Booking booking4 = new Booking(guest6, Arrays.asList(), room2, LocalDate.of(2023, 7, 18), LocalDate.of(2023, 7, 21), VacationType.RECREATION);
+            bookingManager.addBooking(booking4);
+            Booking booking5 = new Booking(guest7, Arrays.asList(), room3, LocalDate.of(2023, 8, 1), LocalDate.of(2023, 8, 31), VacationType.RECREATION);
+            bookingManager.addBooking(booking5);
+
         LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 8, 1);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i <= 9; i++) {
             LocalDate endDate = startDate.plusDays(1);
-            Booking booking = new Booking(guest7, Arrays.asList(), room, startDate, endDate, VacationType.WORK);
+            Booking booking = new Booking(guest7, Arrays.asList(), room2, startDate, endDate, VacationType.RECREATION);
             bookingManager.addBooking(booking);
             startDate = startDate.plusDays(2);
         }
     }
+
+    public static void printAllBookingsFormatted(BookingManager bookingManager) {
+        for (Booking booking : bookingManager.getBookings()) {
+            String dateFrom = booking.getStartDate().toString();
+            String dateTo = booking.getEndDate().toString();
+            String guest = booking.getGuests().getDescription();
+            int numberOfGuests = booking.getNumberOfGuests();
+            boolean seaView = booking.getRoom().isSeaView() ? true : false;
+            int price = booking.getPrice();
+
+            System.out.println("from: " + dateFrom +  " to: " + dateTo + " guest: " + guest + "[" + "number of guests: " + numberOfGuests + " seaview: " + seaView + "]" + " price: " + price + " Kč");
+
+        }
+    }
 }
+
+   /*public static void fillBookings(BookingManager bookingManager, Guest guest, Room room) {
+        LocalDate startDate = LocalDate.of(LocalDate.now().getYear(), 8, 1);
+        for (int i = 0; i <= 10; i++) {
+            LocalDate endDate = startDate.plusDays(1);
+            Booking booking = new Booking(7, Arrays.asList(), 2, startDate, endDate, VacationType.RECREATION);
+            bookingManager.addBooking(booking);
+            startDate = startDate.plusDays(2);
+        }
+    }*/

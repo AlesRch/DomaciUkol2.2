@@ -1,6 +1,9 @@
 package com.engeto.hotel;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BookingManager {
@@ -30,22 +33,43 @@ public class BookingManager {
         for (Booking booking : bookings) {
             if (booking.getTypeOfVacation() == VacationType.WORK) {
                 count++;
-                }
             }
-        return count;
         }
+        return count;
+    }
 
     public Booking getbooking(int index) {
         return bookings.get(index);
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
     public void clearBookings() {
         bookings.clear();
     }
 
+
     public void printAllBookings() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            for (Booking booking : bookings) {
+                System.out.println(booking);
+        }
+    }
+
+    public List<Booking> getFirstEightRecreationalBookings() {
+        List<Booking> recreationalBookings = new ArrayList<>();
+        int count = 0;
         for (Booking booking : bookings) {
-        System.out.println(booking);
+            if (booking.getTypeOfVacation() == VacationType.WORK) {
+                recreationalBookings.add(booking);
+                count++;
+                if (count == 8) {
+                    break;
+                }
             }
+        }
+        return recreationalBookings;
     }
 }

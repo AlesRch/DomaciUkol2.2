@@ -7,16 +7,16 @@ import java.util.List;
 public class Booking {
     private Guest guests;
     private List<Guest> otherGuest;
-    private static Room room;
-    private static LocalDate starDate;
-    private static LocalDate endDate;
+    private Room room;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private VacationType typeOfVacation;
 
-    public Booking(Guest guests, List<Guest> otherGuest, Room room, LocalDate starDate, LocalDate endDate, VacationType typeOfVacation) {
+    public Booking(Guest guests, List<Guest> otherGuest, Room room, LocalDate startDate, LocalDate endDate, VacationType typeOfVacation) {
         this.guests = guests;
         this.otherGuest = otherGuest;
         this.room = room;
-        this.starDate = starDate;
+        this.startDate = startDate;
         this.endDate = endDate;
         this.typeOfVacation = typeOfVacation;
     }
@@ -45,12 +45,12 @@ public class Booking {
         this.room = room;
     }
 
-    public LocalDate getStarDate() {
-        return starDate;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStarDate(LocalDate starDate) {
-        this.starDate = starDate;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public LocalDate getEndDate() {
@@ -73,13 +73,13 @@ public class Booking {
         return otherGuest.size() +1;
         }
 
-    public static long getBookingLength() {
-        long daysBetween = ChronoUnit.DAYS.between(starDate, endDate);
+    public long getBookingLength() {
+        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
         return daysBetween;
     }
 
-    public static double getPrice() {
-        return getBookingLength() * room.getPricePerNight();
+    public int getPrice() {
+        return (int) getBookingLength() * room.getPricePerNight();
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Booking {
                 "guests=" + guests +
                 ", otherGuest=" + otherGuest +
                 ", room=" + room +
-                ", starDate=" + starDate +
+                ", starDate=" + startDate +
                 ", endDate=" + endDate +
                 ", typeOfVacation=" + typeOfVacation +
                 '}';
